@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="far/src/test/java"/>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="lib" path="FAR.app/Contents/Resources/FAR-1.8.jar"/>
+	<classpathentry kind="lib" path="FAR.app/Contents/Resources/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="FAR.app/Contents/Resources/lib/j6plugin-0.2.jar"/>
+	<classpathentry kind="lib" path="FAR.app/Contents/Resources/lib/log4j-1.2.7.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

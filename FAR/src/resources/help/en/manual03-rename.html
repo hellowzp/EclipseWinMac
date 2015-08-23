@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Rename</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Rename</h1>
+Please note that you have to execute the <a href="manual01-find.html">FIND</a> command first, i.e. you always
+have to define the set of files to operate on <i>before</i> you may apply any renaming.
+<p>
+As for the replace command, you may exclude files from the list by unselecting the
+respective checkbox in the <a href="manual04-files.html">file list</a>. Files thus excluded will not be renamed.
+</p><p>
+Specify the part of the file names that should be replaced in the first textbox ("Find...").
+All changes that would apply are immediately displayed in the right column of the file list. 
+This gives you the best controle over what will happen when you press the 
+"Rename" button. Please note that <b>no changes will be made until 
+you press the "Rename" button</b>.
+</p><p>
+You may use <a href="regex.html">regular expressions</a> or the <a href="manual22-fnpattern.html">simple pattern</a> that is used for the file names on the "Find" tab.  
+Select or unselect the "Regular Expression" checkbox accordingly.<br>
+You can also specify whether the expression shall be case sensitive or not. This
+applies to both, regular expressions and simple patterns.
+</p><p>
+By default <b>FAR protects the file extension</b> from changes since this may render
+the file unreadable for other applications. You may however decide to include 
+the file extension (i.e. to lift the protection), or even to apply changes to the 
+file extension <b>only</b>. Select the last radio button if you want to change 
+nothing but the file extension.
+</p><p>
+The second text field takes the text you want to use as a replacement. If you have
+been using regular expressions, you may now use a replacement pattern with 
+<i>capturing groups</i>. See the <a href="regex.html">regular expressions</a> help for details.
+</p><p>
+You can also force file names to become all uppercase (or all lower case). Note that
+this applies to all files in the list, whether they match the pattern in the 
+"Find..." text field or not.
+</p><p>
+If the "Prevent Case Conflict" checkbox at the bottom of the page is selected,
+FAR will not allow that different files get names that differ only in letter case.
+On Windows this checkbox cannot be deselected.
+</p><p>
+The <b>Reset</b> button will reset the application to its initial state. In particular
+will the result file list be cleared.
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+		<string>FAR</string>
+	<key>CFBundleDisplayName</key>
+		<string>FAR - Find And Replace</string>
+	<key>CFBundleIdentifier</key>
+		<string>net.pandoragames.FAR</string>
+	<key>CFBundleVersion</key>
+		<string>1.8.201407012336</string>
+	<key>CFBundlePackageType</key>
+		<string>APPL</string>
+	<key>CFBundleSignature</key>
+		<string>????</string>
+	<key>CFBundleExecutable</key>
+		<string>far.sh</string>
+	<key>CFBundleShortVersionString</key>
+		<string>1.8</string>
+	<key>CFBundleIconFile</key>
+		<string>far.icns</string>
+	<key>NSPrincipalClass</key>
+		<string>NSApplication</string>
+
+</dict>
+</plist>

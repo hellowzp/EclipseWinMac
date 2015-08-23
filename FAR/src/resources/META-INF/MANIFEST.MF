@@ -1,0 +1,6 @@
+Implementation-Title: FAR - Find and Replace
+Implementation-Version: @APPLICATION_BUILDNUMBER@
+Implementation-Vendor: PandoraGames
+Implementation-URL: http://findandreplace.sourceforge.net
+Specification-Title: FAR
+Specification-Version: @APPLICATION_VERSION@

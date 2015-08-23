@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Tools Menu</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Tools Menu</h1>
+FAR offers a small collection of useful utilities. These tools operate on the set
+of selected files, just like the replace and rename operation. Thus, to protect a file
+in the result list from changes, it is sufficient to deselect its checkbox. The utilities are:
+<ul>
+<li><b>Assign Encoding</b>: Assigns a particular encoding to all selected (checked) files. This
+operation <b>does not alter</b> the files on disk. It has the same effect as changing the (declared)
+encoding in the info view or editor. But it allows to define the encoding for an entire collection of
+files at once.</li>
+<li><b>Validate Encoding</b>: Verifies if the selected files can be read with no error using their
+respective, assigned encoding. <b>This does not guarantee the encoding is right!</b> It just checks there
+are no manifest errors when reading the file. For example, a UTF-8 encoded file can allways be read using
+ISO-8859-family encoding, even though this will likely produce some "funny" characters. An ISO-8859-1 encoded
+file on the other hand will produce an decoding error when read with UTF-8 (unless of corse it actually contains
+only ASCII characters, in which case it could correctly be read with either encoding).<br>
+Bottom line: If validation fails, no replace operation will work using the currently assigned encoding.</li>
+<li><b>Change Encoding</b>: Transforms the selected files into the selected character encoding, using their 
+respective assigned encoding for reading. Use this operation to change a file say, from ISO-8859-1 to UTF-8.
+<b>This will alter the file on disk.</b></li>
+<li><b>Line Breaks</b>: Changes the line breaks, e.g. from Windows CR+LF to Unix line feed (LF)</li>
+<li><b>Remove Empty Lines</b>: Removes empty lines.</li>
+<li><b>Trim Lines</b>: Removes white space (blank and tab character), from the beginning and
+the end of every line.</li>
+</ul>
+</p><p>
+Err, that's all right, but <b>how to change file encoding</b> now?<br>
+Make sure the respective file has the right encoding assigned (its current encoding). Then use "Change Encoding", selecting
+the desired new encoding, to transform the file on disk.
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

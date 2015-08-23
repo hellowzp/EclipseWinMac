@@ -1,0 +1,15 @@
+In the project root directory ClasspathDirecroty
+
+compile: java src/com.pack/Main.java(the path to the main java source file)
+
+run: java -cp src com.pack.Main 
+	the main class file is the full-qualified class file name with package name, 
+	the class path is the path where the package is located
+	output: /Users/Benchun/Documents/Engineering/eclipse/ClasspathDirectory
+
+
+Go to src directory
+
+run: java com.pack.Main
+	the default class path consists of the “.” directory
+	output: /Users/Benchun/Documents/Engineering/eclipse/ClasspathDirectory/src

@@ -1,0 +1,13 @@
+net.pandoragames.charset
+net.pandoragames.far
+net.pandoragames.far.ui
+net.pandoragames.far.ui.model
+net.pandoragames.far.ui.swing
+net.pandoragames.far.ui.swing.component
+net.pandoragames.far.ui.swing.component.listener
+net.pandoragames.far.ui.swing.dialog
+net.pandoragames.far.ui.swing.dialog.config
+net.pandoragames.far.ui.swing.dialog.update
+net.pandoragames.far.ui.swing.menu
+net.pandoragames.util.file
+net.pandoragames.util.i18n

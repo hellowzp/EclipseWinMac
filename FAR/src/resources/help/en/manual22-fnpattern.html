@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>FAR Manual - Simple Pattern</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Simple File Name Pattern</h1>
+FAR uses a simplyfied expression syntax to lookup file names, allowing the familiar construct *.ext to look up all files with extension "ext".
+The simple file name pattern syntax knows only four special characters, with the following meaning:
+<ul>
+<li>'<b>*</b>' (asterisk) denotes "any number of characters"</li>
+<li>'<b>?</b>' (question mark) denotes "one character or none"</li>
+<li>'<b>!</b>' (exclamation mark) denotes "exactly one character"</li>
+<li>'<b>#</b>' (hash) denotes "exactly one digit (0-9)</li>
+</ul>
+Simple patterns are not case sensitive, "*.txt" and "*.TXT" are just the same.
+<p>
+Multiple simple patterns can be separated with comma (',') as in "*.html,*.htm". Whitespace before and after a pattern is discarded, thus " *.html , *.htm " is fine also.
+</p><p>
+The most notable difference to common regular expressions is the role of the dot (fullstop, '.'). In regular expressions it denotes "any character" but in simple patterns it denotes 
+just a dot ('.').  
+</p><p>
+Wherever you can use simple patterns, you will find a checkbox "Regular Expression" below the input field. Tick that checkbox if you want to use full 
+regular expressions for the file name pattern instead of simple patterns.
+<h2>Examples</h2>
+<table cellpadding="2" cellspacing="0">
+<tr>
+<td><b>*.txt</b></td><td>means any file with extension "txt", finding "TXT", "Txt" and so on just as well.</td>
+</tr><tr>
+<td><b>my*</b></td><td>means any file that begins with "my".</td>
+</tr><tr>
+<td><b>#*.!!!</b></td><td>means any file that starts with a digit and has an extension of exactly three characters.</td>
+</tr><tr>
+<td><b>*.wsdl, *.xsd</b></td><td>finds wsdl and xsd files.</td>
+</tr><tr>
+<td><b>*.jp?g</b></td><td>find JPEG image file with extension "jpg" or "jpeg" (but also jpig and alike).</td>
+</tr><tr>
+<td><b>*.tar.gz</b></td><td>finds tarballs.</td>
+</tr>
+</table>
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

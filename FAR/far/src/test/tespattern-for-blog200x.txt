@@ -1,0 +1,16 @@
+TESTPATTERN
+<div class="post-body">\s*<div>\s*
+\s*(<img .*?>)*(.*?)$ 
+\s*</div>\s*</div>
+
+TESTREPLACEMENT
+<td class="page">
+	<div class="blog-body">
+\2
+	</div>
+</td>
+<td class="page">
+	<div class="blog-image" align="center">
+\1
+    </div>
+ </td>

@@ -1,0 +1,30 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>FAR-@APPLICATION_VERSION@.jar</jar>
+  <outfile>far.exe</outfile>
+  <errTitle>Get Java 5 for FAR</errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>../src/main/resources/icons/far.ico</icon>
+  <classPath>
+    <mainClass>net.pandoragames.far.ui.swing.FindAndReplace</mainClass>
+    <cp>FAR-@APPLICATION_VERSION@.jar</cp>
+    <cp>lib\commons-logging-1.1.jar</cp>
+    <cp>lib\log4j-1.2.7.jar</cp>
+    <cp>lib\j6plugin-0.2.jar</cp>
+    <cp>conf</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <minVersion>1.5.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+  </jre>
+</launch4jConfig>

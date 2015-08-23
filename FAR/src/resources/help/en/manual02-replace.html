@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Replace</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Replace</h1>
+Please note that you have to execute the <a href="manual01-find.html">FIND</a> command first, i.e. you always have to define the set of files to operate on <i>before</i> you may apply any replacement.
+<p>
+Note that you can exclude files from the REPLACE operation by unselecting the checkboxes in the first column of the <a href="manual04-files.html">file list</a>. Only checked files will be subject to processing.
+</p><p>
+On the "Replace" tab, use the first text area ("Find...") to specify the text you want to replace. You may use a different <b>content pattern</b> than the one you where using to define the file set. This text filter uses regular expressions by default. Unselect the checkbox if you want to 
+look for characters such as '*' or '?' without the need to escape them ('\*' or '\?').
+Select the "Ignore Case" checkbox, if you do not care whether characters are upper case or lower case. This works for both, regular expressions and ordinary text.
+The "Wrap Lines" checkbox only concerns the way text is displayed in the text area. It does not alter the interpretation of the search text itself. 
+</p><p>
+Use the second text area ("Replace with...") to define the replacement text. If you where using regular expressions for the content pattern you may use capturing groups to refer to subpatterns within brackets (()). Read the <a href="regex.html">regular expression help</a> for details. 
+</p><p>
+Befor each replace operation FAR creates a backup of the concerned files. You can allways restore the backup by clicking the "Undo" button, but note that <b>only the very last replace operation can be undone</b>. 
+</p><p>
+Note as well that you can <b>browse the history</b> of the regular expressions you have been executing. Just click into the respective text area ("Content Pattern", "Find..." or "Replace with...") and use <code>Alt + &#8592;</code>, <code>Alt + &#8594;</code> with left and right arrow from the cursor block to move backward and forward in the history, or open the context menu. 
+</p><p>
+The Reset button will reset the application to its initial state. In particular will the result file list be cleared. 
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

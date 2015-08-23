@@ -1,0 +1,161 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package binarytree.parser;
+
+/**
+ *
+ * @author SUN2K
+ */
+public class ParserInfixToTree extends ParserBase {
+
+
+    /*
+     * Returns the next number in the string, that is the number at the beginning
+     * of the tree. Then it removes this number from the string.
+     * If the string does not start with a number, it returns null.
+     */
+    private ParserTreeNode getNextNumber(StringBuffer s) throws ParserException
+    {
+        int pos = s.length() - 1;
+        double x;
+
+        // given term starts with a opening bracket '('
+        if (s.charAt(pos) == ')')
+        {
+            // remove that opening bracket
+            s.deleteCharAt(s.length() - 1);
+            ParserTreeNode nodetmp = buildTreePrio2Operator(s);
+            if (s.charAt(s.length() - 1) == '(')
+            {
+                // remove closing bracket
+                s.deleteCharAt(s.length() - 1);
+                return nodetmp;
+            }
+            else
+                throw new ParserException("Brackets do not match");
+        }
+
+
+        // find end of number
+        for (pos = s.length() - 1; pos >= 0; pos--)
+        {
+            if ((s.charAt(pos) < '0' || s.charAt(pos) > '9') && s.charAt(pos) != '.')
+                break;
+        }
+
+        if (pos == s.length() - 1)
+            // given term does not start with a number
+            return null; //new ParserTreeNode(Double.NaN);
+        
+        // extract the number string
+        String sub = s.substring(pos+1, s.length());
+        // 'sub' contains now just the number
+        try {
+            x = Double.parseDouble(sub);
+        } catch (NumberFormatException ex) {
+            throw new ParserException("String to number parsing exception: " + s);
+        }
+        
+        // remove the number from the beginning of the term
+        s.delete(pos+1, s.length());
+        return new ParserTreeNode(x);
+    }
+
+    /*
+     * Evalulates the expression at the next operator and returns a subtree
+     * with the operator as the node and the two sides ao the expression as leafes.
+     */
+    private ParserTreeNode buildTreePrio1Operator(StringBuffer s) throws ParserException
+    {
+        ParserTreeNode first = getNextNumber(s);
+        if (first == null)
+            return null;
+
+        if (s.length() >= 1 && s.charAt(s.length() - 1) == '*')
+        {
+            s.deleteCharAt(s.length() - 1);
+            ParserTreeNode ptntmp = buildTreePrio1Operator(s);
+            return new ParserTreeNode(ptntmp, first,'*');
+        }
+        else if (s.length() >= 1 && s.charAt(s.length() - 1) == '/')
+        {
+            s.deleteCharAt(s.length() - 1);
+            ParserTreeNode ptntmp = buildTreePrio1Operator(s);
+            return new ParserTreeNode(ptntmp, first,'/');
+        }
+        else
+            return first;
+    }
+
+
+    /*
+     * Evalulates the expression at the next operator and returns a subtree
+     * with the operator as the node and the two sides ao the expression as leafes.
+     */
+    private ParserTreeNode buildTreePrio2Operator(StringBuffer s) throws ParserException
+    {
+        ParserTreeNode first = buildTreePrio1Operator(s);
+        if (first == null)
+            return null;
+
+        if (s.length() >= 1 && s.charAt(s.length() - 1) == '+')
+        {
+            s.deleteCharAt(s.length() - 1);
+
+            ParserTreeNode ptntmp = buildTreePrio2Operator(s);
+            return new ParserTreeNode(ptntmp, first,'+');
+        }
+        else if (s.length() >= 1 && s.charAt(s.length() - 1) == '-')
+        {
+            s.deleteCharAt(s.length() - 1);
+
+            ParserTreeNode ptntmp = buildTreePrio2Operator(s);
+            return new ParserTreeNode(ptntmp, first, '-');
+        }
+        else
+            return first;
+
+    }
+
+
+     
+    /** This function evaluates a parsertree and returns the result of the expression.
+     * If an error occurs, it returns Double.NaN.
+     * Calls itself recursive. Throws NumberFormat exception.
+     * @param tree: the root node of the parser tree
+     */
+    private double evaluateParserTree(ParserTreeNode tree)
+    {
+        if (tree == null)
+            return Double.NaN;
+
+        if (tree.value.toString().equals("+"))
+            return evaluateParserTree(tree.leftTree) + evaluateParserTree(tree.rightTree);
+        else if (tree.value.toString().equals("-"))
+            return evaluateParserTree(tree.leftTree) - evaluateParserTree(tree.rightTree);
+        else if (tree.value.toString().equals("*"))
+            return evaluateParserTree(tree.leftTree) * evaluateParserTree(tree.rightTree);
+        else if (tree.value.toString().equals("/"))
+            return evaluateParserTree(tree.leftTree) / evaluateParserTree(tree.rightTree);
+        else
+            return Double.valueOf(tree.value.toString()).doubleValue();
+    }
+
+        
+    @Override
+    public double evaluate(String s) throws ParserException
+    {
+       StringBuffer sBuf = new StringBuffer(s);
+       sBuf = deleteSpaces(sBuf);
+        
+       ParserTreeNode ptn = buildTreePrio2Operator(sBuf);
+       //System.out.print("InfixToTree Parser Postfix: ");
+       //ptn.printTreePostOrder();
+     
+       return evaluateParserTree(ptn);
+    }
+
+}

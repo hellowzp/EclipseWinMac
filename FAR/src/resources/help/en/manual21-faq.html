@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>FAR Manual - FAQ</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>How do I ... ?</h1>
+<ul>
+<li><a href="#use">Use FAR?</a></li>
+<li><a href="#binary">Replace text in .docx, .pdf or other binary files?</a></li>
+<li><a href="#multiline">Find text spanning multiple line?</a></li>
+<li><a href="#changeEncoding">Change file encoding?</a></li>
+</ul>
+<p>
+<h2><a name="use">How to use FAR?</a></h2>
+The FIND command will always be the first command to be executed, since you have to define the set of files to operate 
+on <i>before</i> you may apply any changes.
+</p><p>
+Select a base directory and a file name pattern such as *.txt to specify where and what to seach.
+</p><p>
+Once the FIND command has run, you can operate on the set of found files. To exclude a file from a <a href="manual02-replace.html">replace</a>, <a href="manual03-rename.html">rename</a> or
+other <a href="manual15-menu-tools.html">operation</a>, just uncheck the checkbox in the left column of the result list.
+</p><p>
+<h2><a name="binary">How to replace text in binary files?</a></h2>
+Word documents and PDF files are binary files, not text files, even though they contain text. FAR on the other hand is a tool for text files, not binary files.
+As per default FAR does protect .docx, .pdf and other binary files from being altered. If you need to change such files, use an appropriate editor such as Microsoft Word
+or Adobe Writer.
+</p><p>
+However, there is an option in the FAR <a href="manual11-menu-settings.html">settings</a> that, if disabled, allows to modify binary files: "Exclude binary files from replace operation".
+Use at your own risk.
+</p><p>
+<h2><a name="multiline">How to find text spanning multiple line?</a></h2>
+To add a line break into your search pattern, simply typ a second line like so:
+</p><p>
+<code>
+Text that continues<br>
+on a second line.
+</code>
+</p><p>
+No obscure construct such as "<code>$\r?(?s:.)^</code>" is required.
+</p><p>
+But there are situations when you do not know how many lines to find. Say you want to find all the Foo nodes in an XML document, that is all the text from &lt;Foo&gt; to &lt;/Foo&gt;.
+If such a node can span any number of lines, you will need to apply the following expression:
+</p><p>
+<code>
+&lt;Foo&gt;(?s:.+?)&lt;/Foo&gt;
+</code>
+</p><p>
+This combines the "dotall" flag ?s: with the quite exotic "reluctant" quantifier +?. The dotall flag makes the dot (.) represent line breaks also (wich it normaly does not).
+The "reluctant" quantifier +? prevents the regular expression parser from expanding the found text to the last closing &lt;/Foo&gt; tag in the document.
+</p><p>
+<h2><a name="changeEncoding">How change file encoding?</a></h2>
+First make sure the respective file has the right encoding assigned. The assigned encoding is disaplayed in the info view. Click with the right mouse button to get it.
+If the assigned encoding is not the files real (current) encoding, change the assigned encoding first. You can do this in the info view as well.
+</p><p>
+Next make sure only those files are checked (checkbox in left column of file list), that should have their encoding changed. Uncheck all other files, if any.  
+</p><p>
+Eventually open the Tools menu and select the new encoding from the Change Encoding menu item.
+
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

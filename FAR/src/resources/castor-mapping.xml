@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" 
+						"http://castor.org/mapping.dtd">
+
+<mapping>
+	<description>Serialisation of a find and replace pattern set</description>
+	
+	<class name="net.pandoragames.far.ui.model.FindForm">
+		<map-to xml="FAR-Pattern" ns-uri="net.pandoragames.far.ui.model.FindForm"/>
+		<field name="filePattern" required="true">
+			<bind-xml name="FileNamePattern" node="element"/>
+		</field>
+		<field name="regexFilePattern" required="true">
+			<bind-xml name="regex" location="FileNamePattern" node="attribute" />
+		</field>
+		<field name="searchStringContent">
+			<bind-xml name="ContentPattern" node="element"/>
+		</field>
+		<field name="ignoreCase">
+			<bind-xml name="ignoreCase" location="ContentPattern" node="attribute" />
+		</field>
+		<field name="regexContentPattern">
+			<bind-xml name="regex" location="ContentPattern" node="attribute" />
+		</field>
+	</class>
+
+</mapping>

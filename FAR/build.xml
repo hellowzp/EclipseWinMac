@@ -1,0 +1,355 @@
+<?xml version="1.0"?>
+
+<project name="FAR" default="release" basedir=".">
+
+	<!-- libraries:
+		 adapt the repository path to the situation on you machine -->
+	<property name="repository.dir" value="../../repository"/>
+	<property name="commons-logging.lib" value="commons-logging/1.1/commons-logging-1.1.jar"/>
+	<property name="log4j.lib" value="org/apache/log4j/1.2.7/log4j-1.2.7.jar"/>
+	<property name="j6plugin.lib" value="net/pandoragames/j6plugin/0.2/j6plugin-0.2.jar"/>
+	
+	<!-- launch4j - needed for windows binaries (target win-bin):
+		adapt the location path to the situation on you machine -->
+	<property name="launch4j.dir" location="../../extern/launch4j" />
+
+	<!-- the following properties are not supposed to change -->
+	<property name="ant.regexp.regexpimpl" value="org.apache.tools.ant.util.regexp.Jdk14RegexpRegexp"/>
+	<property name="package.base" value="net/pandoragames"/>	
+	<!-- main directories -->
+	<property name="sources.dir" value="src/main"/>
+	<property name="build.dir" value="build"/>
+	<property name="javadoc.dir" value="doc"/>
+	<!-- build directories -->
+	<property name="target.dir.name" value="far"/>
+	<property name="target.dir" value="${build.dir}/${target.dir.name}"/>
+	<property name="apple.dir" value="${target.dir}/FAR.app/Contents"/>	
+	<property name="classes.dir" value="${target.dir}/classes"/>
+	<property name="src.dir" value="${target.dir}/src"/>
+	<property name="src-main.dir" value="${src.dir}/main/java"/>
+	<!-- miscelaneous properties -->
+	<property name="start.winmac" value="Double click the application icon."/>
+	<property name="start.x" value="Change to the instalation dirctory and call ./far.sh."/>
+	
+	<!-- taskdefinition for launch4J -->
+	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask"
+		classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
+
+	<!-- The version must be specified by the user, so it can not be forgotten -->
+	<target name="version">
+		<property name="version.number" value="1.8.00"/>
+		<tstamp>
+		    <format property="DSTAMP" pattern="dd-MM-yyyy"/>
+		    <format property="build.number" pattern="yyyyMMddHHmm"/>
+			<format property="cr.year" pattern="yyyy"/>
+		</tstamp>
+	</target>
+	
+	<!-- prepare the build dir -->
+	<target name="cleanup">
+		<delete includeemptydirs="true" failonerror="false">
+		    <fileset dir="${build.dir}" includes="**/*"/>
+		</delete>
+	 	<mkdir dir="${target.dir}"/>
+	</target>	
+		
+	<!-- copy the sources and replace the copyright note -->
+	<target name="copysrc" depends="cleanup">
+		<loadfile property="GPL" srcFile="${sources.dir}/licenses/gpl.copyright"/>
+		<loadfile property="LGPL" srcFile="${sources.dir}/licenses/lgpl.copyright"/>
+		<copy todir="${src-main.dir}/${package.base}/far">
+			<filterset begintoken="&lt;!-- " endtoken=" -->">
+				<filter token="copyright note" value="${GPL}"/>
+			</filterset>
+			<fileset dir="${sources.dir}/java/${package.base}/far">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${src-main.dir}/${package.base}/charset">
+			<filterset begintoken="&lt;!-- " endtoken=" -->">
+				<filter token="copyright note" value="${LGPL}"/>
+			</filterset>
+			<fileset dir="${sources.dir}/java/${package.base}/charset">
+				<include name="*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${src-main.dir}/${package.base}/util">
+			<filterset begintoken="&lt;!-- " endtoken=" -->">
+				<filter token="copyright note" value="${LGPL}"/>
+			</filterset>
+			<fileset dir="${sources.dir}/java/${package.base}/util">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>		
+	</target>
+		
+	<!-- compile the sources -->
+	<target name="compile" depends="copysrc">
+		<mkdir dir="${classes.dir}"/>
+		<javac destdir="${classes.dir}" source="1.5" target="1.5">
+			<classpath>
+			    <pathelement path="${repository.dir}/${commons-logging.lib}"/>
+			    <pathelement path="${repository.dir}/${j6plugin.lib}"/>
+		  	</classpath>
+			<src path="${src-main.dir}"/>
+		</javac>
+	</target>
+	
+	<!-- copy javadoc package comments to the source directory -->
+	<target name="copydoc" depends="cleanup">
+		<copy todir="${src-main.dir}">
+			<fileset dir="${sources.dir}/java">
+				<include name="**/*.html"/>
+			</fileset>
+		</copy>	
+	</target>
+	
+	<!-- copy everything to the source build directory for packaging -->
+	<target name="copyall" depends="copysrc, copydoc, version">
+		<copy todir="${src.dir}/main">
+			<fileset dir="${sources.dir}">
+				<include name="licenses/*.*"/>
+				<include name="resources/**/*.*"/>
+				<include name="script/*.*"/>
+				<include name="txt/*.txt"/>
+			</fileset>
+		</copy>
+		<copy todir="${src.dir}/test">
+			<fileset dir="src/test"/>
+		</copy>
+	</target>
+	
+	<!-- create the licenses subdirectory -->
+	<target name="licenses">
+		<copy todir="${target.dir}/licenses">
+			<fileset dir="${sources.dir}/licenses/" includes="*.txt"/>
+		</copy>		
+	</target>
+	
+	<!-- create the javadoc -->
+	<target name="javadoc" depends="compile, version, copydoc" description="Create the javadoc">
+	    <javadoc destdir="${target.dir}/doc" 
+	    		access="protected" 
+	    		source="1.5" 
+	    		use="true" 
+	    		notree="false" 
+	    		nonavbar="false" 
+	    		noindex="false" 
+	    		splitindex="true" 
+	    		author="true" 
+	    		version="true" 
+	    		nodeprecatedlist="false" 
+	    		nodeprecated="false" 
+	    		classpath="${repository.dir}/${commons-logging.lib}:${classes.dir}" 
+	    		overview="${sources.dir}/java/overview.html" 
+	    		doctitle="FAR ${version.number}" 
+	    		additionalparam=" -windowtitle &quot;FAR - Find And Replace&quot;">
+	    	<packageset dir="${src-main.dir}"/>	
+	    </javadoc>
+	</target>
+	
+	<!-- collect everything that gets into the jar -->
+	<target name="collectForJar" depends="version">
+		<copy todir="${classes.dir}">
+			<fileset dir="${sources.dir}/java">
+			  <include name="**/*.properties"/>
+			  <include name="**/*.xml"/>
+			  <exclude name="**/*.java"/>
+			  <exclude name="**/*.html"/>
+			</fileset>
+		</copy>
+		<copy todir="${classes.dir}/icons">
+			<fileset dir="${sources.dir}/resources/icons">
+			  <include name="**/*.gif"/>
+			  <include name="**/*.png"/>
+			</fileset>
+		</copy>
+		<copy todir="${classes.dir}/help">
+			<fileset dir="${sources.dir}/resources/help">
+			  <include name="**/*.html"/>
+			  <include name="**/*.css"/>
+			</fileset>
+			  <filterset>
+			    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+			    <filter token="APPLICATION_BUILDNUMBER" value="${build.number}"/>
+			    <filter token="APPLICATION_YEAR" value="${cr.year}"/>
+			  </filterset>
+		</copy>
+		<copy file="${sources.dir}/resources/META-INF/MANIFEST.MF" toFile="${target.dir}/MANIFEST.MF">
+		  <filterset>
+		    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+		    <filter token="APPLICATION_BUILDNUMBER" value="${build.number}"/>
+		  </filterset>
+		</copy>
+		<copy toDir="${classes.dir}/META-INF">
+			<fileset dir="${sources.dir}/resources/META-INF">
+			  <exclude name="MANIFEST.MF"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- create the jar file -->
+	<target name="jar" depends="compile,collectForJar">
+		<jar basedir="${classes.dir}" 
+			destfile="${target.dir}/FAR-${version.number}.jar"
+			manifest="${target.dir}/MANIFEST.MF"/>
+		<delete file="${target.dir}/MANIFEST.MF"/>
+	</target>
+
+	<!-- create the windows launcher -->
+	<target name="launcher" depends="jar">
+		<copy file="${sources.dir}/script/farlauncher.xml" tofile="${build.dir}/farlauncher-${version.number}.launch4j" overwrite="true">
+			  <filterset>
+			  	<filter token="APPLICATION_VERSION" value="${version.number}"/>
+			  </filterset>
+		</copy>
+		<launch4j configFile="${build.dir}/farlauncher-${version.number}.launch4j" 
+			  outfile="${target.dir}/far.exe"/>
+	</target>
+
+	<!-- collect everything that gets into the binary zip -->
+	<target name="collectForZip" depends="version, licenses">
+		<mkdir dir="${target.dir}/lib"/>
+		<copy todir="${target.dir}/lib" flatten="true">
+			<fileset dir="${repository.dir}">
+			  <include name="${commons-logging.lib}"/>
+			  <include name="${log4j.lib}"/>
+			  <include name="${j6plugin.lib}"/>
+			</fileset>
+		</copy>
+		<mkdir dir="${target.dir}/conf"/>
+		<copy file="${sources.dir}/resources/fartext.properties" todir="${target.dir}/conf"/>
+		<copy file="${sources.dir}/resources/log4j.prod.xml" tofile="${target.dir}/conf/log4j.xml"/>
+		<copy todir="${target.dir}">
+			<fileset dir="${sources.dir}/script">
+			  <include name="far.sh"/>
+			  <include name="far.bat"/>
+			</fileset>			
+			  <filterset>
+			    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+			  </filterset>
+		</copy>
+		<chmod file="${target.dir}/far.sh" perm="a+rx"/>
+		<copy file="${sources.dir}/txt/changelog.txt" todir="${target.dir}"/>
+	</target>
+
+	<!-- Creates the binary zip archive for windows -->
+	<target name="win-bin" depends="launcher,collectForZip" description="Creates binary distributions for Win">
+		<copy file="${sources.dir}/txt/release-notes.txt" tofile="${target.dir}/README.txt" overwrite="true">
+			  <filterchain>
+			  	<fixcrlf eol="dos"/>
+			  	<replacetokens>
+				    <token key="APPLICATION_VERSION" value="${version.number}"/>
+				    <token key="DATE" value="${DSTAMP}"/>
+				    <token key="START" value="${start.winmac}"/>
+			  	</replacetokens>
+			  </filterchain>
+		</copy>
+		<zip destfile="${build.dir}/FAR-${version.number}-win.zip" 
+			basedir="${build.dir}">
+			<include name="${target.dir.name}/conf/**/*"/>
+			<include name="${target.dir.name}/lib/**/*"/>
+			<include name="${target.dir.name}/licenses/**/*"/>
+			<include name="${target.dir.name}/*.jar"/>
+			<include name="${target.dir.name}/*.bat"/>
+			<include name="${target.dir.name}/*.exe"/>
+			<include name="${target.dir.name}/*.txt"/>
+		</zip>
+	</target>
+	
+	<!-- Creates the binary zip archive for linux and compatibles -->
+	<target name="x-bin" depends="jar,collectForZip" description="Creates binary distributions for Linux and compatible">
+		<copy file="${sources.dir}/txt/release-notes.txt" tofile="${target.dir}/README.txt" overwrite="true">
+			  <filterset>
+			    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+			    <filter token="DATE" value="${DSTAMP}"/>
+			    <filter token="START" value="${start.x}"/>
+			  </filterset>
+		</copy>
+		<copy file="${sources.dir}/resources/icons/far.xpm" tofile="${target.dir}/far.xpm" overwrite="true"/>
+		<copy file="${sources.dir}/resources/icons/far.png" tofile="${target.dir}/far.png" overwrite="true"/>
+		<tar destfile="${build.dir}/FAR-${version.number}-x.tar.gz" compression="gzip">
+			<tarfileset dir="${build.dir}">
+				<include name="${target.dir.name}/conf/**/*"/>
+				<include name="${target.dir.name}/lib/**/*"/>
+				<include name="${target.dir.name}/licenses/**/*"/>
+				<include name="${target.dir.name}/*.jar"/>
+				<include name="${target.dir.name}/*.xpm"/>
+				<include name="${target.dir.name}/*.png"/>
+				<include name="${target.dir.name}/*.txt"/>
+			</tarfileset>
+			<tarfileset file="${target.dir}/far.sh" fullpath="${target.dir.name}/far.sh" mode="755"/>
+		</tar>
+	</target>
+	
+	<!-- Creates the binary zip archive for mac os x -->
+	<target name="mac-bin" depends="jar,collectForZip" description="Creates binary distributions for Mac OSX">
+		<copy file="${sources.dir}/txt/release-notes.txt" tofile="${target.dir}/README.txt" overwrite="true">
+			  <filterset>
+			    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+			    <filter token="DATE" value="${DSTAMP}"/>
+			    <filter token="START" value="${start.winmac}"/>
+			  </filterset>
+		</copy>
+		<mkdir dir="${apple.dir}"/>
+		<mkdir dir="${apple.dir}/MacOS"/>
+		<mkdir dir="${apple.dir}/Resources"/>
+		<copy file="${sources.dir}/script/Info.plist" todir="${apple.dir}" overwrite="true">
+			  <filterset>
+			  	<filter token="APPLICATION_VERSION" value="${version.number}"/>
+				<filter token="APPLICATION_BUILDNUMBER" value="${build.number}"/>
+			  </filterset>
+		</copy>
+		<copy file="${sources.dir}/script/far.osx" tofile="${apple.dir}/MacOS/far.sh">
+			  <filterset>
+			    <filter token="APPLICATION_VERSION" value="${version.number}"/>
+			  </filterset>
+		</copy>
+		<chmod file="${apple.dir}/MacOS/far.sh" perm="a+rx"/>
+		<copy file="${sources.dir}/script/PkgInfo" todir="${apple.dir}"/>
+		<copy file="${sources.dir}/resources/icons/far.icns" todir="${apple.dir}/Resources"/>
+		<mkdir dir="${apple.dir}/Resources/lib"/>
+		<copy todir="${apple.dir}/Resources/lib">
+			<fileset dir="${target.dir}/lib"/>
+		</copy>
+		<mkdir dir="${apple.dir}/Resources/conf"/>
+		<copy todir="${apple.dir}/Resources/conf">
+			<fileset dir="${target.dir}/conf"/>
+		</copy>
+		<copy file="${target.dir}/FAR-${version.number}.jar" tofile="${apple.dir}/Resources/FAR-${version.number}.jar"/>
+		<zip destfile="${build.dir}/FAR-${version.number}-osx.zip">
+			<zipfileset file="${apple.dir}/MacOS/far.sh" fullpath="${target.dir.name}/FAR.app/Contents/MacOS/far.sh" filemode="755"/>
+			<zipfileset dir="${build.dir}">
+				<include name="${target.dir.name}/FAR.app/Contents/*"/>
+				<include name="${target.dir.name}/FAR.app/Contents/Resources/**/*"/>
+				<include name="${target.dir.name}/licenses/**/*"/>
+				<include name="${target.dir.name}/*.txt"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+	<!-- create the source zip archives -->
+	<target name="src-zip"  depends="javadoc, copyall" description="Creates a zip with source and documentation">
+		<copy file="${sources.dir}/txt/build-instructions.txt" tofile="${target.dir}/README.txt" overwrite="true">
+			  <filterset>
+			  	<filter token="APPLICATION_VERSION" value="${version.number}"/>
+				<filter token="DATE" value="${DSTAMP}"/>
+			  </filterset>
+		</copy>
+		<copy file="${sources.dir}/txt/changelog.txt" todir="${target.dir}"/>
+		<copy file="build.xml" todir="${target.dir}"/>
+		
+		
+		<tar destfile="${build.dir}/FAR-${version.number}-sources.tar.gz" 
+		     basedir="${build.dir}"  compression="gzip" longfile="gnu">
+			<include name="${target.dir.name}/src/**/*"/>
+			<include name="${target.dir.name}/doc/**/*"/>
+			<include name="${target.dir.name}/licenses/**/*"/>
+			<include name="${target.dir.name}/*.txt"/>
+			<include name="${target.dir.name}/build.xml"/>
+		</tar>		
+	</target>
+	
+	<target name="release" depends="win-bin, x-bin, mac-bin, src-zip" description="Creates a complete release"/>
+	
+</project>

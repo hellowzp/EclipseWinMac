@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Find</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Find</h1>
+The FIND command will always be the first command to be executed, since you have to define the set of files to operate 
+on <i>before</i> you may apply any changes.
+<p>
+You can use various filters to narrow the set of files you are operating on:
+<ul>
+<li><b>Directory</b>: The "Base Directory" input field shows the directory where the search
+will begin.</li>
+<li><b>Subdirectories</b>: By default the "include subdirectories" checkbox is selected and files from each subdirectory will be taken into consideration. 
+Click the underlined "Each" label if you want to limit the set of subdirectories included. If you specify some <a href="manual22-fnpattern.html">pattern</a> here,
+only files with an ancestor directory whose name matches that pattern can be found. Unless of couse you tick the "Exclude Matching Directories" checkbox,
+in which case files from matching directories (and their subdirectories) will be excluded.</li>
+<li><b>File Name Pattern</b>: You may use <a href="manual22-fnpattern.html">simple file name patterns</a> such as "*.txt" or "*.html, *.htm" to specifiy the 
+files you want to work with. You can pick from the list or type directyl into the box if the pattern you need is not available. 
+If you click the "Save Pattern" button a freshly added pattern will permanently be included in the list, otherwise it will only be available for this session.<br>
+Simple patterns are not case sensitive. If you want to use full regular expressions for the file name pattern, tick the checkbox 
+below the input field.</li>
+<li><b>Modification Date</b>: You can also look for files of a particular age. Click the underlined "Restrict modification date" label to specify how old the 
+files must be at least or at most.</li>
+<li><b>Content Pattern</b>: You can immediately filter for files that contain a certain text. 
+This text filter uses regular expressions by default (unselect the checkbox to disable).<br>
+Select the "Ignore Case" checkbox, if you do not care whether characters are upper case or lower case.
+This works for both, regular expressions and ordinary text.<br>
+Select the "Exclude matching files" checkbox to find those files that do <i>not</i> contain the
+search pattern.<br>
+The "Wrap Lines" checkbox only concerns the way text is displayed in the text area. It does
+not alter the interpretation of the search text itself.</li>
+</ul>
+When you click on the Find button, the FIND command will be executed in a background process that can be aborted by pressing the Cancel button.
+<h2>Import or pick</h2>
+FAR offers three alternative ways to define the file list. In theses cases the FIND command is executed implicitely, hence no further filtering is possible at this stage. 
+<ul>
+<li><b>Single Selection</b>: You can pick a single file from the "Base Directory" file browser instead of a directoy. This will "find" just the selected file and allows you to quickly carry on.</li>
+<li><b>Drag and Drop</b>: You can pull files and folders from a file browser (e.g. Windows Explorer) onto the FAR application window. Folders will be resolved to all file contained, subfolders included.</li>
+<li><b>Import</b>: Eventually you can <i>import</i> a list of files via the "File" menu. The import
+file must contain absolute pathes, on path per line (UTF-8 encoded).</li>
+</ul>
+<h2>Subselect</h2>
+Once the FIND command has terminated, its result is displayed in the file list on the right hand side of the application window.
+You can now manually exclude certain files from further processing. Simply unselect the checkboxes in the left column of the file list.
+The facilities from the <a href="manual13-menu-select.html">Select menu</a> offer additional support to unselect groups of files from the file list.
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

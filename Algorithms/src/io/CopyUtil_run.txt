@@ -1,0 +1,14 @@
+how to run from command line:
+1. go to bin dir
+2. java -cp ../lib/commons-io-2.4.jar -cp ./ IOUtil 1>>test.txt 2>&1 (or 2>&1 | touch test.txt)
+	
+	this will redirect both System.out(1) and System.err(2) to test.txt
+	
+	if not specify “-cp ./“ , Error: Could not find or load main class IOUtil 
+	
+	IO redirection can also be done programatically : http://stackoverflow.com/questions/5714053/how-can-we-redirect-eclipse-console-output-to-a-file
+		System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/location/to/console.out")), true));  //how to set append??
+		Due to the fact that this solution is based on a PrintStream, we can enable autoFlush, but according to the docs:
+autoFlush - A boolean; if true, the output buffer will be flushed whenever a byte array is written, one of the println methods is invoked, or a newline character or byte ('\n') is written
+
+

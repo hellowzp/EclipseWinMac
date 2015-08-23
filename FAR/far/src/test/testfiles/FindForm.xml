@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_21" class="java.beans.XMLDecoder"> 
+ <object class="net.pandoragames.far.ui.model.FindForm"> 
+  <void property="baseDirectory"> 
+   <object class="java.io.File"> 
+    <string>/home/olive/java/dev4far/FAR/src/test/testfiles</string> 
+   </object> 
+  </void> 
+  <void property="searchStringContent"> 
+   <string>\w \d{2} .*</string> 
+  </void> 
+ </object> 
+</java> 

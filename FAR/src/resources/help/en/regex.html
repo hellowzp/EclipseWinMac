@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>Regular Expressions</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+
+<h1>Regular Expressions</h1>
+FAR uses Java regular expressions. The following section only repeats the most important
+key points. You may want to read the javadoc of class <code>java.util.regex.Pattern</code> for further details.
+
+<h2>Basics</h2>
+The following characters have special meaning and must be escaped using the backslash (\) character:
+<p>
+"." (dot), "*" (asterisk), "?" (question mark), "+" (plus), "{" and "}", "(" and ")", "^", "$" and "-" (hyphen).
+</p><p>
+Non-alphabetic characters may always be escaped, even if they do not have special meaning, e.g. "\#".
+</p><p>
+Alphabetic characters may <b>not</b> be escaped. However, some alphabetic characters
+gain special meaning when preceded by a backslash: 
+</p><p>
+<table cellpadding="2" cellspacing="0">
+<tr>
+<td class="first">\t</td><td class="def">The tab character ('\u0009')</td>
+</tr><tr>
+<td class="first">\n</td><td class="def">The newline (line feed) character ('\u000A')</td>
+</tr><tr>
+<td class="first">\r</td><td class="def">The carriage-return character ('\u000D')</td>
+</tr><tr>
+<td class="first">\d</td><td class="def">A digit: [0-9]</td>
+</tr><tr>
+<td class="first">\D</td><td class="def">A non-digit: [^0-9]</td>
+</tr><tr>
+<td class="first">\s</td><td class="def">A whitespace character: [ \t\n\x0B\f\r]</td>
+</tr><tr>
+<td class="first">\S</td><td class="def">A non-whitespace character: [^\s]</td>
+</tr><tr>
+<td class="first">\w</td><td class="def">A word character: [a-zA-Z_0-9]</td>
+</tr><tr>
+<td class="first">\W</td><td class="def">A non-word character: [^\w]</td>
+</tr><tr>
+<td class="first">\b</td><td class="def">A word boundary</td>
+</tr>
+</table>
+</p><p>
+The dot <b>(.)</b> denotes any character, <b>"x|y"</b> means x or y. For any expression  <b>x</b> the appearance of<br><br>
+<table cellpadding="2" cellspacing="0">
+<tr>
+<td class="first">x</td><td class="def"> means "x" (exactly once)</td>
+</tr><tr>
+<td class="first">x*</td><td class="def"> means "x" zero or more times</td>
+</tr><tr>
+<td class="first">x?</td><td class="def"> means "x" once or not at all</td>
+</tr><tr>
+<td class="first">x+</td><td class="def"> means "x" at least one time</td>
+</tr><tr>
+<td class="first">x{n}</td><td class="def">x, exactly n times</td>
+</tr><tr>
+<td class="first">x{n,}</td><td class="def">x, at least n times</td>
+</tr><tr>
+<td class="first">x{n,m}</td><td class="def">x, at least n but not more than m times</td>
+</tr>
+</table>
+</p><p>
+Thus ".*" means any character, any number of times. This expression matches any text, even 
+the empty String.
+</p><p>
+<b>"^"</b> denotes the beginning of a line, <b>"$"</b> denotes the end of a line. Patterns may span multiple lines,
+and line break patterns will automatically be included (this is a special FAR feature).
+</p>
+
+<h2>Character Classes</h2>
+<h3>Generic Character Classes</h3>
+<table cellpadding="2" cellspacing="0">
+<tr>
+<td class="first">[abc]</td><td class="def">a, b, or c (simple class)</td>
+</tr><tr>
+<td class="first">[^abc]</td><td class="def">Any character except a, b, or c (negation)</td>
+</tr><tr>
+<td class="first">[a-zA-Z]</td><td class="def">a through z or A through Z, inclusive (range)</td>
+</tr><tr>
+<td class="first">[a-d[m-p]]</td><td class="def">a through d, or m through p: [a-dm-p] (union)</td>
+</tr><tr>
+<td class="first">[a-z&&[def]]</td><td class="def">d, e, or f (intersection)</td>
+</tr><tr>
+<td class="first">[a-z&&[^bc]]</td><td class="def">a through z, except for b and c: [ad-z] (subtraction)</td>
+</tr><tr>
+<td class="first">[a-z&&[^m-p]]</td><td class="def">a through z, and not m through p: [a-lq-z](subtraction)</td>
+</tr>
+</table>
+<h3>POSIX Character Classes</h3>
+<table cellpadding="2" cellspacing="0">
+<tr>
+<td class="first">\p{Lower}</td><td class="def">A lower-case ASCII character: [a-z]</td>
+</tr><tr>
+<td class="first">\p{Upper}</td><td class="def">An upper-case ASCII character: [A-Z]</td>
+</tr><tr>
+<td class="first">\p{ASCII}</td><td class="def">All ASCII:[\x00-\x7F]</td>
+</tr><tr>
+<td class="first">\p{Alpha}</td><td class="def">An alphabetic ASCII character: [\p{Lower}\p{Upper}]</td>
+</tr><tr>
+<td class="first">\p{Digit}</td><td class="def">A decimal digit: [0-9]</td>
+</tr><tr>
+<td class="first">\p{Alnum}</td><td class="def">An alphanumeric ASCII character: [\p{Alpha}\p{Digit}]</td>
+</tr><tr>
+<td class="first">\p{Punct}</td><td class="def">Punctuation: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~</td>
+</tr><tr>
+<td class="first">\p{Graph}</td><td class="def">A visible character: [\p{Alnum}\p{Punct}]</td>
+</tr><tr>
+<td class="first">\p{Print}</td><td class="def">A printable character: [\p{Graph}\x20]</td>
+</tr><tr>
+<td class="first">\p{Blank}</td><td class="def">A space or a tab: [ \t]</td>
+</tr><tr>
+<td class="first">\p{Cntrl}</td><td class="def">A control character: [\x00-\x1F\x7F]</td>
+</tr><tr>
+<td class="first">\p{XDigit}</td><td class="def">A hexadecimal digit: [0-9a-fA-F]</td>
+</tr><tr>
+<td class="first">\p{Space}</td><td class="def">A whitespace character: [ \t\n\x0B\f\r]</td>
+</tr>
+</table>
+
+<h2>Capturing Groups</h2>
+In order to perform a find and <i>replace</i> operation, you need to use "capturing groups". Each pair
+of ordinary brackets () in a regex pattern defines a capturing group. The following regular expression
+for example
+<div align="center" class="example">my (\w*) ((\w*) is (\w*))</div>
+defines four capturing groups, numbered from 1 to 4. The zero capturing group always denotes the entire
+expression. Applied to the sentence
+<div align="center" class="example">One of my favourite fruits is banana</div>
+the expression will yield the following groups:
+<p>
+0: "my favourite fruits is banana"<br>
+1: "favourite"<br>
+2: "fruits is banana"<br>
+3: "fruits"<br>
+4: "banana"<br>
+</p><p>
+A replacement string may refer to these capturing groups using a backslash (\) followed by the group number
+(the Java API uses the dollar sign ($) as "group reference indicator", you can change the indicator character
+in the configuration settings).
+To stay with our example, we could use the replacement string
+<div align="center" class="example">her \1 drinks is \4-shake</div>
+which will transform the sentence as follows:
+<div align="center" class="example">One of her favourite drinks is banana-shake</div>
+</p><p>
+Replacement strings may also span multiple lines. Just type your replacement text into the 
+text area as you would like it to be, including line breaks and capturing groups. "\n" will 
+<b>not</b> be recognised as a line break in a replacement pattern. Just type naturally!
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

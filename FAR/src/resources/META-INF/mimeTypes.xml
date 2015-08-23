@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FileTypes xmlns='http://findandreplace.sourceforge.net/xml/mime/v1'>
+	<Binary encoding='X-CP437'>
+		<Archive>
+			<Mime name='application/gzip' extensions='.gz'/>
+			<Mime name='application/x-7z-compressed' extensions='.7z'/>
+			<Mime name='application/x-tar-gz' extensions='.tar.gz'/>
+			<Mime name='application/zip' extensions='.zip .jar .war .ear'/>
+		</Archive>
+		<Document>
+			<Mime name='application/msword' extensions='.doc .docx .dot .dotx'/>
+			<Mime name='application/pdf' extensions='.pdf'/>
+			<Mime name='application/vnd.oasis.opendocument.text' extensions='.odt'/>
+		</Document>
+		<Mime name='application/octet-stream' extensions='.bin .exe .so .class'/>
+		<!-- 
+		<Mime name='application/msexcel' extensions='.xls .xlsx'/>
+		<Mime name='application/mspowerpoint' extensions='.ppt .pps .pptx .ppsx'/>
+		<Mime name='application/vnd.oasis.opendocument.presentation' extensions='.odp'/>
+		<Mime name='application/vnd.oasis.opendocument.spreadsheet' extensions='.ods'/>
+		-->
+		<Mime name='image/gif' extensions='.gif'/>
+		<Mime name='image/jpeg' extensions='.jpg .jpeg .jpe'/>
+		<Mime name='image/png' extensions='.png'/>
+	</Binary>
+	<Text>
+		<Source>
+			<Mime name='text/javascript' extensions='.js'/>
+			<Mime name='text/x-bat' extensions='.bat'/>
+			<Mime name='text/x-c' extensions='.c .cc .cxx .cpp .h .hh .dic'/>
+			<Mime name='text/x-fortran' extensions='.f .for .f77 .f90'/>
+			<Mime name='text/x-java-source' extensions='.java'/>
+			<Mime name='text/x-pascal' extensions='.p .pas'/>
+			<Mime name='text/x-perl' extensions='.pl'/>
+			<Mime name='text/x-php' extensions='.php'/>
+			<Mime name='text/x-sh' extensions='.sh'/>
+			<Mime name='text/x-sql' extensions='.sql'/>
+		</Source>
+		<Table>
+			<Mime name='text/csv' extensions='.csv .tab'/>
+			<!-- Mime name='text/x-java-properties' encoding='ISO-8859-1' extensions='.properties'/ -->
+		</Table>
+		<SGML>
+			<XML encoding='UTF-8'>
+				<Mime name='text/xml' extensions='.xml .xsd'/>
+				<Mime name='application/xhtml+xml' extensions='.xhtml'/>
+			</XML>
+			<Mime name='text/html' extensions='.html .htm'/>
+		</SGML>
+		<Mime name='text/css' extensions='.css'/>
+		<Mime name='text/plain' extensions='.txt .text .log .conf'/>
+		<Mime name='text/rtf' extensions='.rtf'/>
+	</Text>
+</FileTypes>

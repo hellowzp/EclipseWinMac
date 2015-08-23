@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>FAR Settings Menu</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>FAR Settings Menu</h1>
+The FAR configuration settings allow to gear the following categories:
+<ul>
+<li><a href="#far">Find and Replace (F&R)</a></li>
+<li><a href="#list">File List</a></li>
+<li><a href="#encoding">Encoding</a></li>
+<li><a href="#mime">File Types</a></li>
+</ul>
+<p>
+<h2><a name="far">Find and Replace (F&R)</a></h2>
+The first tab comprises the most important settings:
+<ul>
+<li><b>File Name Pattern</b>: Here is the place where you can remove patterns you do not need anymore.</li>
+<li><b>Treat unknown file types as binary</b>: Enabled by default, this option decides how FAR should handle unknown file types. As binary files or text files. 
+Binary files are protected from unwanted changes through the following option, text files are not.</li>
+<li><b>Exclude binary files from replace operation</b>: Enabled by default, this option protects binary files from inadvertent modifications. If you lift this 
+protection you run the risk to damage binary files through replace operations, making them unreadable.</li>
+<li><b>Group Reference Indicator</b>: The character used in regular expression replacement strings to reference a bracket group in the search expression.</li>
+<li><b>Backup Directory and Flag</b>: Define the directory where backup files should be stored. You can temporarily disable the creation of backups altogether,
+but the option will be enabled again upon the next start of FAR.</li>
+</ul>
+</p><p>
+<h2><a name="list">File List</a></h2>
+Define what <b>view</b> should be opened when you double click on files in the file list.
+</p><p>
+You can also specify the <b>information</b> that should be displayed in the rightmost column of the file list.
+<h2><a name="encoding">Encoding</a></h2>
+Define the default encoding used by FAR if it should be different from the default platform encoding of your operating system.
+</p><p>
+You can also add more encodings to the list of encodings available in FAR (for replace operations and others). Simply click on an entry in the list of supported encodings
+to bring it on the right side. If you click an encoding in the list of available encodings, it will be removed from there.
+</p><p>
+FAR always comes with UTF-8, US-ASCII, X-CP437 and you default platform encoding if it is different from UTF-8 and US-ASCII. These three or four encodings are always available
+and can not be removed. X-CP437 is a special encoding for viewing binary files. It copies code page 437, well known from DOS times, but carries a printable character for the first (zero)
+and last (FF) byte: &#x2300; and &#x25a1;.
+</p><p>
+<h2><a name="mime">File Types</a></h2>
+Add or modify the file types recognized by FAR. This feature allows you to define groups of files with an encoding different from the default encoding.
+</p><p>
+FAR uses the file extension to identify the file type a particular file belongs to. If you add an extension that is already used by some other file type,
+it will be redrawn from that original file type.
+</p><p>
+The Category will be used in future versions of FAR to supply additional tools and functionality. 
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

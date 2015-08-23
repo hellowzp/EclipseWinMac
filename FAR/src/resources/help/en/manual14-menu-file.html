@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>File Menu</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>File Menu</h1>
+The operations from the file menu process the (checked) files in the file list, just as the
+REPLACE and RENAME commands do. Thus you have to execute the <a href="manual01-find.html">FIND</a> command first. The only exception to this rule is the <i>Import</i> operation.
+<p>
+The <b>Import</b> menu entry allows you to open a file with a list of files for import, one file per line. Files must be noted with their full path, relative pathes are not recognized. On Windows, all files must be located on the same drive. If some file names (or directory names) contain non-ascii characters, the file must be utf-8 encoded. Importing a file list is equivalent to the FIND command in that it makes the other commands such as REPLACE available.
+</p><p>
+The "File" menu allows also to <b>export</b> the result file list to a file for further processing. You will be asked to define the export file name and directory. Every (checked) file in the file list will be written on a new line.
+</p><p>
+If only a <b>single file</b> is selected (checked), the following <i>view</i> options are made available:
+<ul>
+<li><b>Edit</b>: Open the file in a simple editor for quick changes.</li>
+<li><b>View</b>: Display the matches of a regular expression from the "Find..." area.</li>
+<li><b>Preview</b>: Preview the result of a replace operation.</li>
+<li><b>Info</b>: Show various file information about the file.</li>
+</ul>
+Each of those views will display the <b>assigned encoding</b> of that file, i.e. the character set that will
+be used to read and write the file. 
+If the <b>actual encoding</b> of a file is incompatible with the <b>assigned encoding</b>, this may result in 
+"funny characters" or error messages.
+</p><p>
+The <a href="manual11-menu-settings.html">application configuration</a> allows you to add encodings, to change the default encoding for unspecified text files or to set the assigned encoding for a particular file type such as HTML files.<br>
+However, the views above also allow you to set the encoding for this particular file for the duration of the application session.
+</p><p>
+The <b>View</b> option is only available if the "Find" tab or the "Replace" tab is selected.
+It will highlight the matches of the regular expression on the respective tab.
+</p><p>
+The <b>Preview</b> option is only available if the "Replace" tab is selected.
+</p><p>
+You will also find the following <i>operational</i> options:
+<ul>
+<li><b>Copy</b>: Copy one or more files to another directory.</li>
+<li><b>Tree Copy</b>: Copy files to another directory together with their directory tree, starting at the base directory.</li>
+<li><b>Move</b>: Move one or more files to another directory.</li>
+<li><b>Delete</b>: Delete one or more files from the hard disk.</li>
+</ul>
+These commands will operate on the set of <b>checked</b> files in the file list. If you deselect the checkbox of one of those files, that file will not take part.
+</p><p>
+The <b>tree copy</b> operation may need some more explanation: If the base directory for the find command was <code>c:\base\dir</code>, and
+you tree copy a file  <code>c:\base\dir\subdir\a.file</code> to some other directory <code>c:\elsewhere</code>, it will actually be copied
+to <code>c:\elsewhere\subdir\a.file</code>. That is, tree copy also copies the files relative directory tree.
+</p><p>
+The "File" section of the application menu and the context menu of the <a href="manual04-files.html" class="menu">File List</a> essentially offer the same operations, 
+but with a subtle difference concerning the respective selection model:<br>
+Operations called from the application menu processes the <b>checked</b> files, i.e. 
+the entries selected by virtue of the checkboxes in the first column of the file list.
+The context menu on the other hand acts on the set of <b>highlighted</b> files, i.e. the entries selected by 
+clicking with the mouse. 
+</p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>

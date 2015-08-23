@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Result File List</title>
+<link rel="stylesheet" type="text/css" href="manualstyle.css">
+</head>
+<body>
+<!-- div align="right" class="footer">FAR - Find And Replace</div -->
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+<hr>
+<h1>Result File List</h1>
+The file list on the right side of the application shows the results of your search. It also
+allows for various views and manipulations off the different files. <b>Right click</b> any one file to get the context menu.
+<p>
+The context menu displays the following <i>view</i> options if only a <b>single file</b> is selected:
+<ul>
+<li><b>Edit</b>: Open the file in a simple editor for quick changes.</li>
+<li><b>View</b>: Display the matches of a regular expression from the "Find..." area.</li>
+<li><b>Preview</b>: Preview the result of a replace operation.</li>
+<li><b>Info</b>: Show various information such as size and modification date.</li>
+</ul>
+Each of those views will display the <b>assigned encoding</b> of that file, i.e. the character set that will
+be used to read and write the file. 
+If the <b>actual encoding</b> of a file is incompatible with the <b>assigned encoding</b>, this may result in 
+"funny characters" or error messages.
+</p><p>
+The <a href="manual11-menu-settings.html">application configuration</a> allows you to add encodings, to change the default encoding for unspecified text files or to set the assigned encoding for a particular file type such as HTML files.<br>
+However, the views above also allow you to set the encoding for this particular file for the duration of the application session.
+</p><p>
+The <b>View</b> option is only available if the "Find" tab or the "Replace" tab is selected.
+It will highlight the matches of the regular expression on the respective tab.
+</p><p>
+The <b>Preview</b> option is only available if the "Replace" tab is selected.
+</p><p>
+If you are running on Java 6 or later, the context menu will display two options to call external
+programs:
+<ul>
+<li><b>Open File</b>: Open the file in the systems default editor.</li>
+<li><b>Open Directory</b>: Open the files directory in the file system browser.</li>
+</ul>
+Please read the note at the bottom of this page<sup>*)</sup>.
+</p><p>
+The context menu furthermore offers a <b>Rename</b> operation if not more than one file is selected. 
+As you will have guessed, it allows you to change the name of the selected file.
+</p><p>
+In the context menu you will also find the following <i>operational</i> options:
+<ul>
+<li><b>Copy</b>: Copy one or more files to another directory.</li>
+<li><b>Tree Copy</b>: Copy files to another directory together with their directory tree, starting at the base directory.</li>
+<li><b>Move</b>: Move one or more files to another directory.</li>
+<li><b>Delete</b>: Delete one or more files from the hard disk.</li>
+</ul>
+The tree copy operation may need some more explanation. If the base directory for the find command was c:\base\dir, and
+you tree copy a file  c:\base\dir\subdir\a.file to some other directory c:\elsewhere, it will actually be copied
+to c:\elsewhere\subdir\a.file. That is, tree copy also copies the files relative directory tree.
+</p><p>
+At the very bottom of the result file list you will find the number of selected files. 
+By default all files are selected. You will also see an indication at the bottom 
+should there be any errors during a replace or rename operation.
+</p><p>
+The context menu and the "File" section of the application menu essentially offer the same operations, 
+but with a subtle difference concerning the respective selection model:<br>
+Operations called from the context menu act on the set of <b>highlighted</b> files (the entries selected by 
+clicking with the mouse). The <a href="manual14-menu-file.html">application menu</a> on the other hand processes the <b>checked</b> files, i.e. 
+the entries selected by virtue of the checkboxes in the first column.
+</p><p>
+<hr>
+<sup>*)</sup>: Please note that Java calls to the system desktop may have implementation flaws in some versions of the JDK. They might not work properly for some desktop configurations, blocking the applicatio or they make
+FAR display obscure error messages such as "Failed to show URI". These errors are more prominent on Linux but have been observed on Windows also (blocking behaviour). However, those are JDK bugs beyond my reach and 
+responsibility. This concerns only the Open File and Open Directory option
+from the context menu. An update to the latest version of the JDK may help.
+</p><p>
+<hr>
+<div align="right" class="footer">FAR - Find And Replace</div>
+<div align="center" class="menu">
+<a href="index.html" class="menu">Overview</a>&nbsp;&middot;&nbsp;
+<a href="manual21-faq.html" class="menu">FAQ & Howto</a>&nbsp;&middot;&nbsp;
+<a href="manual22-fnpattern.html" class="menu">File Name Pattern</a>&nbsp;&middot;&nbsp;
+<a href="regex.html" class="menu">Regular Expressions</a>
+<br>
+<a href="manual11-menu-settings.html" class="menu">FAR Settings</a>&nbsp;&middot;&nbsp;
+<a href="manual12-menu-search.html" class="menu">Search</a>&nbsp;&middot;&nbsp;
+<a href="manual13-menu-select.html" class="menu">Select</a>&nbsp;&middot;&nbsp;
+<a href="manual14-menu-file.html" class="menu">File</a>&nbsp;&middot;&nbsp;
+<a href="manual15-menu-tools.html" class="menu">Tools</a>
+<br>
+<a href="manual01-find.html" class="menu">Find</a>&nbsp;&middot;&nbsp;
+<a href="manual02-replace.html" class="menu">Replace</a>&nbsp;&middot;&nbsp;
+<a href="manual03-rename.html" class="menu">Rename</a>&nbsp;&middot;&nbsp;
+<a href="manual04-files.html" class="menu">File List</a>
+</div>
+</body>
+</html>
