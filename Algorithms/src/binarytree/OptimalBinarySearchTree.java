@@ -1,4 +1,4 @@
-package bst;
+package binarytree;
 
 /**
  * introduction to algorithms 15.5

@@ -5,17 +5,25 @@ package sort;
  * smallest item first
  */
 public final class SortUtil {
+	
+	public static <T extends Comparable<? super T>> void bubbleSort(T[] a) {
+		for (int i = a.length; i > 0; i--) {
+			for (int j=1; j<i; j++) {
+				if( a[j-1].compareTo(a[j]) > 0 )
+					swapReferences(a, j-1, j);
+			}
+		}
+	}
+	
 	/**
-	 * Simple insertion sort.
+	 * Insertion sort.
 	 * 
-	 * @param a
-	 *            an array of Comparable items.
+	 * @param a: an array of Comparable items.
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] a) {
-		for (int p = 1; p < a.length; p++) {
-			T tmp = a[p];
-			int j = p;
-
+		for (int i = 1; i < a.length; i++) {
+			T tmp = a[i];
+			int j = i;
 			for (; j > 0 && tmp.compareTo(a[j - 1]) < 0; j--)
 				a[j] = a[j - 1];
 			a[j] = tmp;
@@ -25,10 +33,9 @@ public final class SortUtil {
 	/**
 	 * Shellsort, using a sequence suggested by Gonnet.
 	 * 
-	 * @param a
-	 *            an array of Comparable items.
+	 * @param a: an array of Comparable items.
 	 */
-	public static <T extends Comparable<? super T>> void shellsort(T[] a) {
+	public static <T extends Comparable<? super T>> void shellSort(T[] a) {
 		for (int gap = a.length / 2; gap > 0; 
 				gap = gap == 2 ? 1 : (int) (gap / 2.2))
 			for (int i = gap; i < a.length; i++) {
@@ -47,10 +54,9 @@ public final class SortUtil {
 	 * @param a
 	 *            an array of Comparable items.
 	 */
-	public static <T extends Comparable<? super T>> void heapsort(
-			T[] a) {
+	public static <T extends Comparable<? super T>> void heapSort(T[] a) {
+		/* buildHeap */
 		for (int i = a.length / 2 - 1; i >= 0; i--)
-			/* buildHeap */
 			percDown(a, i, a.length);
 		for (int i = a.length - 1; i > 0; i--) {
 			swapReferences(a, 0, i); /* deleteMax */
@@ -59,10 +65,9 @@ public final class SortUtil {
 	}
 
 	/**
-	 * Internal method for heapsort.
+	 * Internal method for heapSort.
 	 * 
-	 * @param i
-	 *            the index of an item in the heap.
+	 * @param i: the index of an item in the heap.
 	 * @return the index of the left child.
 	 */
 	private static int leftChild(int i) {
@@ -97,8 +102,7 @@ public final class SortUtil {
 	/**
 	 * Mergesort algorithm.
 	 * 
-	 * @param a
-	 *            an array of Comparable items.
+	 * @param a: an array of Comparable items.
 	 */
 	public static <T extends Comparable<? super T>> void mergeSort(T[] a) {
 		@SuppressWarnings("unchecked")
@@ -175,9 +179,9 @@ public final class SortUtil {
 	 * @param a
 	 *            an array of Comparable items.
 	 */
-	public static <T extends Comparable<? super T>> void quicksort(
+	public static <T extends Comparable<? super T>> void quickSort(
 			T[] a) {
-		quicksort(a, 0, a.length - 1);
+		quickSort(a, 0, a.length - 1);
 	}
 
 	private static final int CUTOFF = 10;
@@ -192,8 +196,7 @@ public final class SortUtil {
 	 * @param index2
 	 *            the index of the second object.
 	 */
-	public static final <T> void swapReferences(T[] a, int index1,
-			int index2) {
+	final static <T> void swapReferences(T[] a, int index1, int index2) {
 		T tmp = a[index1];
 		a[index1] = a[index2];
 		a[index2] = tmp;
@@ -210,7 +213,7 @@ public final class SortUtil {
 	 * @param high
 	 *            the right-most index of the subarray.
 	 */
-	private static <T extends Comparable<? super T>> void quicksort(
+	private static <T extends Comparable<? super T>> void quickSort(
 			T[] a, int low, int high) {
 		if (low + CUTOFF > high)
 			insertionSort(a, low, high);
@@ -243,8 +246,8 @@ public final class SortUtil {
 			// Restore pivot
 			swapReferences(a, i, high - 1);
 
-			quicksort(a, low, i - 1);  // Sort small elements
-			quicksort(a, i + 1, high); // Sort large elements
+			quickSort(a, low, i - 1);  // Sort small elements
+			quickSort(a, i + 1, high); // Sort large elements
 		}
 	}
 

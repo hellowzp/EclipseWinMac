@@ -40,11 +40,11 @@ public class TestSort
             checkSort( a );
 
             permute( a );
-            SortUtil.heapsort( a );
+            SortUtil.heapSort( a );
             checkSort( a );
 
             permute( a );
-            SortUtil.shellsort( a );
+            SortUtil.shellSort( a );
             checkSort( a );
 
             permute( a );
@@ -52,7 +52,7 @@ public class TestSort
             checkSort( a );
 
             permute( a );
-            SortUtil.quicksort( a );
+            SortUtil.quickSort( a );
             checkSort( a );
 
             permute( a );
